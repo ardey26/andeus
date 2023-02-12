@@ -5,3 +5,30 @@
 .section {
   height: 100vh;
 }
+
+@layer base {
+  @font-face {
+    font-family: "Graphik Bold";
+    src: local("Graphik Bold"), local("Graphik-Bold"), local("graphik bold"),
+      local("graphik-bold"), url("/fonts/GraphikBold.otf");
+    font-weight: bold;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Graphik Light";
+    src: local("Graphik Light"), local("Graphik-Light"), local("graphik light"),
+      local("graphik-light"), url("/fonts/GraphikLight.otf");
+    font-weight: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Graphik Semi Bold";
+    src: local("Graphik Semi Bold"), local("Graphik-Semi-Bold"),
+      local("graphik semi bold"), local("graphik-semi-bold"),
+      url("/fonts/GraphikSemibold.otf");
+    font-weight: normal;
+    font-display: swap;
+  }
+}

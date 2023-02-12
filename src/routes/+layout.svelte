@@ -1,5 +1,9 @@
 <script>
-	import '../app.css';
+  import "../app.css";
 </script>
 
-<slot />
+<div class="font-graphik-light dark">
+  <div class="dark:bg-[#252525] dark:text-white">
+    <slot />
+  </div>
+</div>
