@@ -1,37 +1,53 @@
-<script>
-  export let image, title, description, website, github;
+<script lang="ts">
+  export let image: string,
+    title: string,
+    description: string,
+    website: string,
+    github: string,
+    technologies: Array<string>;
 </script>
 
-<div class="max-w-sm border border-gray-200 rounded-lg shadow relative">
-  <a href={website || github} target="_blank" rel="noreferrer">
-    <img class="rounded-t-lg" src={image} alt="" />
-  </a>
-  <div class="p-5 border-t">
-    <a href="/">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        {title}
-      </h5>
+<div class="flex flex-col justify-between border-2 border-gray-300 rounded-xl">
+  <div class="rounded-lg shadow relative">
+    <a href={website || github} target="_blank" rel="noreferrer">
+      <img class="rounded-t-lg" src={image} alt="" />
     </a>
-    <p class="mb-3 font-normal text-gray-400">
-      {description}
-    </p>
-    <div class="absolute bottom-0">
-      <button
-        type="button"
-        class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 border"
-      >
-        View on GitHub
-      </button>
-      {#if website}
-        <button
-          type="button"
-          class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 border"
-        >
-          Visit website
-        </button>
-      {/if}
+    <div class="border-t">
+      <div class="mx-4">
+        <span>
+          <a href="/">
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              {title}
+            </h5>
+          </a>
+          <a
+            href={github}
+            class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+            >GitHub</a
+          >
+          {#if website}
+            <a
+              href={website}
+              class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+              >Website</a
+            >
+          {/if}
+        </span>
+        <p class="my-3 font-normal text-white">
+          {description}
+        </p>
+        <p class="border-t mb-3 text-gray-400">
+          {#each technologies as technology}
+            {#if technology === technologies[technologies.length - 1]}
+              and {technology}.
+            {:else}
+              {technology}, {" "}
+            {/if}
+          {/each}
+        </p>
+      </div>
     </div>
   </div>
 </div>

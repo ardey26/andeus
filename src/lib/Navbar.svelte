@@ -1,5 +1,6 @@
 <script>
   import logo from "./images/logo.png";
+  import resume from "./files/DeJesus-Andre-Resume.pdf";
 </script>
 
 <nav class="px-2 border-gray-200 dark:border-gray-700">
@@ -41,7 +42,7 @@
         </li>
         <li>
           <a
-            href="mailto: dejesusandre0226@gmail.com"
+            href="#contact"
             class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg"
             >contact</a
           >
@@ -55,9 +56,9 @@
         </li>
         <li>
           <a
-            href="#"
+            href={resume}
             class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg"
-            >resume</a
+            download>resume</a
           >
         </li>
       </ul>
