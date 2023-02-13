@@ -34,7 +34,7 @@
       image: kardban,
       title: "kardban",
       description:
-        "A social media web application built with: MongoDB for the Database; Express and Node for the backend; React for the frontend. Everything is Dockerized and uses Nginx for load balancing and reverse proxying. Styling was done using Bootstrap 5. Authentication/Authorization was accomplished through JWT.",
+        "A kanban-style social media web application built for productivity using: MongoDB for the Database; Express and Node for the backend; React for the frontend. Everything is Dockerized and uses Nginx for load balancing and reverse proxying. Styling was done using Bootstrap 5. Authentication/Authorization was accomplished through JWT.",
       github: "https://github.com/ardey26/kardban",
       technologies: [
         "MongoDB",
@@ -51,7 +51,7 @@
       image: portfolio,
       title: "Portfolio",
       description:
-        "My personal portfolio website built using Sveltekit and TailwindCSS with Flowbite library.",
+        "My personal portfolio website built using Sveltekit, TailwindCSS with Flowbite library, Prisma and PostgreSQL (Supabase) for the messages.",
       website: "https://www.iksi.app",
       github: "https://github.com/ardey26/iksi",
       technologies: [
@@ -66,8 +66,9 @@
   ];
 </script>
 
-<div class="min-h-screen py-20" id="projects">
+<div class="min-h-screen py-10" id="projects">
   <div class="container m-auto">
+    <h1 class="text-center text-4xl mb-5">Projects</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {#each projects as project}
         <ProjectCard

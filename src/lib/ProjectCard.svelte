@@ -7,13 +7,13 @@
     technologies: Array<string>;
 </script>
 
-<div class="flex flex-col justify-between border-2 border-gray-300 rounded-xl">
-  <div class="rounded-lg shadow relative">
+<div class="flex border-2 border-gray-300 rounded-xl">
+  <div class="rounded-lg">
     <a href={website || github} target="_blank" rel="noreferrer">
       <img class="rounded-t-lg" src={image} alt="" />
     </a>
     <div class="border-t">
-      <div class="mx-4">
+      <div class="mx-4 ">
         <span>
           <a href="/">
             <h5

@@ -22,7 +22,7 @@
 <section class="section border grid place-items-center" id="contact">
   <div class="py-8 lg:py-16 px-4 max-w-screen-md">
     <h2
-      class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+      class="mb-4 text-4xl tracking-tight text-center text-white"
     >
       Contact me
     </h2>
@@ -62,7 +62,7 @@
       </div>
       <button
         type="submit"
-        class="py-3 border px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 ml-[35%]"
+        class="py-3 border px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-white hover:text-black ml-[35%]"
       >
         {#if success}
           Message sent!
