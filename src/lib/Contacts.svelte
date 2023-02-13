@@ -21,15 +21,13 @@
 
 <section class="section border grid place-items-center" id="contact">
   <div class="py-8 lg:py-16 px-4 max-w-screen-md">
-    <h2
-      class="mb-4 text-4xl tracking-tight text-center text-white"
-    >
+    <h2 class="mb-4 text-4xl tracking-tight text-center text-white">
       Contact me
     </h2>
     <p
       class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl"
     >
-      Need help? shoot me an email!
+      Need help? send a message!
     </p>
     <form on:submit|preventDefault={handleSubmit} class="space-y-8">
       <div>
