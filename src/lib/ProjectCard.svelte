@@ -17,7 +17,7 @@
         <span>
           <a href="/">
             <h5
-              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              class="mx-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
               {title}
             </h5>
@@ -25,12 +25,14 @@
           <a
             href={github}
             class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+            target="_blank"
             >GitHub</a
           >
           {#if website}
             <a
               href={website}
               class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+              target="_blank"
               >Website</a
             >
           {/if}
