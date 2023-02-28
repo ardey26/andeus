@@ -17,7 +17,7 @@
         <span>
           <a href="/">
             <h5
-              class="mx-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
               {title}
             </h5>
