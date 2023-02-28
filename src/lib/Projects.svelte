@@ -54,7 +54,7 @@
       description:
         "My personal portfolio website built using Sveltekit, TailwindCSS with Flowbite library, Prisma and PostgreSQL (Supabase) for the messages.",
       website: "https://www.iksi.app",
-      github: "https://github.com/ardey26/iksi",
+      github: "https://github.com/ardey26/andeus",
       technologies: [
         "SvelteKit",
         "TailwindCSS",
