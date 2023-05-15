@@ -35,7 +35,7 @@
       title: "kardban",
       description:
         "A kanban-style social media web application built for productivity using: MongoDB for the Database; Express and Node for the backend; React for the frontend. Everything is Dockerized and uses Nginx for load balancing and reverse proxying. Styling was done using Bootstrap 5. Authentication/Authorization was accomplished through JWT.",
-      website: "https://client-g4elocovaq-as.a.run.app/",
+
       github: "https://github.com/ardey26/kardban",
       technologies: [
         "MongoDB",
