@@ -12,7 +12,7 @@
   <div class="text-5xl lg:text-7xl text-gray-500 mt-3">Software Engineer</div>
 
   <a
-    href="https://drive.google.com/file/d/1B3Kdu3Ui8Pdw8y1At6wfkN40OjupX50c/view"
+    href="https://drive.google.com/file/d/17iEP0MJWR8-uK3aqVbYqZvFXft0JYlS5/view?usp=sharing"
     target="_blank"
     rel="noreferrer"
   >
