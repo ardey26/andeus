@@ -1,8 +1,14 @@
 <script lang="ts">
-  let email: string = " ",
-    message: string = " ";
+  import { onMount } from 'svelte';
+
+  let email: string = "",
+    message: string = "";
 
   let success: string;
+  let scrollY = 0;
+  let sectionElement;
+  let formElement;
+
   const handleSubmit = async () => {
     const response = await fetch("/send", {
       method: "POST",
@@ -17,68 +23,135 @@
     email = "";
     message = "";
   };
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (formElement) observer.observe(formElement);
+
+    return () => observer.disconnect();
+  });
+
+  $: parallaxOffset = scrollY * 0.1;
 </script>
 
-<section class="section border grid place-items-center" id="contact">
-  <div class="py-8 lg:py-16 px-4 max-w-screen-md">
-    <h2 class="mb-4 text-4xl tracking-tight text-center text-white">
-      Contact me
-    </h2>
-    <p
-      class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl"
-    >
-      Need help? send a message!
-    </p>
-    <form on:submit|preventDefault={handleSubmit} class="space-y-8">
-      <div>
-        <label
-          for="email"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >Your email</label
-        >
-        <input
-          type="email"
-          id="email"
-          class="border border-white text-white text-sm rounded-lg block w-full p-2.5 bg-[#252525]"
-          bind:value={email}
-          placeholder="name@email.com"
-          required
-        />
-      </div>
+<svelte:window bind:scrollY />
 
-      <div class="sm:col-span-2">
-        <label for="message" class="block mb-2 text-sm font-medium text-white"
-          >Your message</label
+<section 
+  bind:this={sectionElement}
+  class="section relative bg-gradient-to-br from-black via-gray-900 to-black py-20 overflow-hidden"
+  id="contact"
+>
+  <!-- Background elements -->
+  <div 
+    class="absolute inset-0"
+    style="transform: translateY({parallaxOffset}px)"
+  >
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">
+        Let's <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Connect</span>
+      </h2>
+      <p class="text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+        Have a project in mind? Let's discuss how we can bring your ideas to life.
+      </p>
+    </div>
+
+    <!-- Contact Form -->
+    <div 
+      bind:this={formElement}
+      class="text-reveal glass p-8 md:p-12 max-w-2xl mx-auto"
+    >
+      <form on:submit|preventDefault={handleSubmit} class="space-y-8">
+        <div class="space-y-6">
+          <!-- Email Input -->
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-white/80">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              bind:value={email}
+              placeholder="your@email.com"
+              required
+              class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all duration-300"
+            />
+          </div>
+
+          <!-- Message Input -->
+          <div class="space-y-2">
+            <label for="message" class="block text-sm font-medium text-white/80">
+              Message
+            </label>
+            <textarea
+              id="message"
+              rows="6"
+              bind:value={message}
+              placeholder="Tell me about your project..."
+              required
+              class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all duration-300 resize-none"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full apple-button py-4 text-lg font-medium relative overflow-hidden group"
         >
-        <textarea
-          id="message"
-          rows="6"
-          class="block p-2.5 w-full text-sm text-white bg-[#252525] rounded-lg shadow-sm border border-white"
-          bind:value={message}
-          placeholder="Leave a message..."
-        />
+          <span class="relative z-10">
+            {#if success}
+              ✓ Message Sent Successfully!
+            {:else}
+              Send Message
+            {/if}
+          </span>
+        </button>
+      </form>
+
+      <!-- Alternative Contact Methods -->
+      <div class="mt-12 pt-8 border-t border-white/10">
+        <div class="text-center space-y-4">
+          <p class="text-white/60 mb-6">Or reach out directly:</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="mailto:dejesusandre0226@gmail.com"
+              class="flex items-center justify-center space-x-3 px-6 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-300 group"
+            >
+              <svg class="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <span class="text-white/80 group-hover:text-white transition-colors">Email</span>
+            </a>
+
+            <a
+              href="tel:+639471959691"
+              class="flex items-center justify-center space-x-3 px-6 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-300 group"
+            >
+              <svg class="w-5 h-5 text-green-400 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span class="text-white/80 group-hover:text-white transition-colors">+63 947 195 9691</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <button
-        type="submit"
-        class="py-3 border px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-white hover:text-black ml-[35%]"
-      >
-        {#if success}
-          Message sent!
-        {:else}
-          Send message
-        {/if}
-      </button>
-    </form>
-    <p class="mt-2 text-gray-400 text-center">
-      Want to send me an email directly? click<a
-        href="mailto: dejesusandre0226@gmail.com"
-        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-      >
-        &nbsp;here</a
-      >
-    </p>
-    <p class="mt-2 text-gray-400">
-      You can also reach me through my contact number: +63 947 195 9691
-    </p>
+    </div>
   </div>
 </section>

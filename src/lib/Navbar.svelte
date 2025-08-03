@@ -1,60 +1,52 @@
 <script>
   import logo from "./images/logo.png";
-  import resume from "./files/DeJesus-Andre-Resume.pdf";
+  import { onMount } from 'svelte';
+
+  let scrollY = 0;
+  let isScrolled = false;
+
+  onMount(() => {
+    const handleScroll = () => {
+      scrollY = window.scrollY;
+      isScrolled = scrollY > 50;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
 </script>
 
-<nav class="px-2 border-gray-200 dark:border-gray-700">
-  <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="/" class="flex items-center">
-      <img src={logo} class="h-6 mr-3 sm:h-10" alt="andeus logo" /> ANDEUS
+<svelte:window bind:scrollY />
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 {isScrolled ? 'glass backdrop-blur-lg' : 'bg-transparent'} px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="/" class="flex items-center space-x-3 text-white hover:opacity-80 transition-opacity">
+      <img src={logo} class="h-8 w-8" alt="andeus logo" />
+      <span class="text-xl font-semibold tracking-tight">ANDEUS</span>
     </a>
-    <button
-      data-collapse-toggle="navbar-dropdown"
-      type="button"
-      class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      aria-controls="navbar-dropdown"
-      aria-expanded="false"
-    >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-6 h-6"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        ><path
-          fill-rule="evenodd"
-          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-          clip-rule="evenodd"
-        /></svg
+    
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="#about" class="text-white/80 hover:text-white transition-colors text-sm font-medium tracking-wide">About</a>
+      <a href="#projects" class="text-white/80 hover:text-white transition-colors text-sm font-medium tracking-wide">Projects</a>
+      <a href="#contact" class="text-white/80 hover:text-white transition-colors text-sm font-medium tracking-wide">Contact</a>
+      <a 
+        href="https://drive.google.com/file/d/17iEP0MJWR8-uK3aqVbYqZvFXft0JYlS5/view?usp=sharing"
+        target="_blank"
+        rel="noreferrer"
+        class="apple-button text-sm px-6 py-2"
       >
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-      <ul
-        class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0   dark:border-gray-700"
-      >
-        <li>
-          <a
-            href="#about"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg"
-            >about</a
-          >
-        </li>
-        <li>
-          <a
-            href="#projects"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg"
-            >projects</a
-          >
-        </li>
-        <li>
-          <a
-            href="#contact"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg"
-            >contact</a
-          >
-        </li>
-      </ul>
+        Resume
+      </a>
     </div>
+
+    <!-- Mobile menu button -->
+    <button 
+      class="md:hidden text-white p-2"
+      aria-label="Menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
   </div>
 </nav>
